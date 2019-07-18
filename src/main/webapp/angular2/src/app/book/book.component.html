@@ -1,45 +1,82 @@
-<div class="card">
+<div class="card border border-dark bg-dark text-white">
 	<div class="card-header">
 		<strong>Add New Book</strong>
 	</div>
-	<form class="form-horizontal">
+	<form class="form-horizontal" #bookForm="ngForm">
 		<div class="card-body">
 			<div class="row">
 				<label class="col-md-2 control-label">Title</label>
 				<div class="col-md-4 mb-3">
-					<input type="text" class="form-control" placeholder="Enter Book Title" name="title">
+					<input type="text" class="form-control" placeholder="Enter Book Title" id="title" name="title" [(ngModel)]="book.title" required minlength="3" #title="ngModel">
+					<p class="text-danger" *ngIf="title.errors?.required && title.touched">
+						Book Title is required.
+					</p>
+					<p class="text-danger" *ngIf="title.errors?.minlength">
+						Book Title must be at least 3 characters long.
+					</p>
 				</div>
 				
 				<label class="col-md-2 control-label">Author</label>
 				<div class="col-md-4 mb-3">
-					<input type="text" class="form-control" placeholder="Enter Book Author" name="author">
+					<input type="text" class="form-control" placeholder="Enter Book Author" id="author" name="author" [(ngModel)]="book.author" required minlength="3" #author="ngModel">
+					<p class="text-danger" *ngIf="author.errors?.required && author.touched">
+						Book Author is required.
+					</p>
+					<p class="text-danger" *ngIf="author.errors?.minlength">
+						Book Author must be at least 3 characters long.
+					</p>
 				</div>
 			</div>
 			<div class="row">
 				<label class="col-md-2 control-label">Cover Photo URL</label>
 				<div class="col-md-4 mb-3">
-					<input type="text" class="form-control" placeholder="Enter Book Cover Photo URL" name="coverPhotoURL">
+					<input type="text" class="form-control" placeholder="Enter Book Cover Photo URL" id="coverPhotoURL" name="coverPhotoURL" [(ngModel)]="book.coverPhotoURL" required minlength="10" #coverPhotoURL="ngModel">
+					<p class="text-danger" *ngIf="coverPhotoURL.errors?.required && coverPhotoURL.touched">
+						Book Cover Photo URL is required.
+					</p>
+					<p class="text-danger" *ngIf="coverPhotoURL.errors?.minlength">
+						Book Cover Photo URL must be at least 10 characters long.
+					</p>
 				</div>
 				
 				<label class="col-md-2 control-label">ISBN Number</label>
 				<div class="col-md-4 mb-3">
-					<input type="text" class="form-control" placeholder="Enter Book ISBN Number" name="isbnNumber">
+					<input type="text" class="form-control" placeholder="Enter Book ISBN Number" id="isbnNumber" name="isbnNumber" [(ngModel)]="book.isbnNumber" required minlength="3" #isbnNumber="ngModel">
+					<p class="text-danger" *ngIf="isbnNumber.errors?.required && isbnNumber.touched">
+						Book ISBN Number is required.
+					</p>
+					<p class="text-danger" *ngIf="isbnNumber.errors?.minlength">
+						Book ISBN Number must be at least 3 characters long.
+					</p>
 				</div>
 			</div>
 			<div class="row">
 				<label class="col-md-2 control-label">Price</label>
 				<div class="col-md-4 mb-3">
-					<input type="text" class="form-control" placeholder="Enter Book Price" name="price">
+					<input type="text" class="form-control" placeholder="Enter Book Price" id="price" name="price" [(ngModel)]="book.price" required minlength="1" #price="ngModel">
+					<p class="text-danger" *ngIf="price.errors?.required && price.touched">
+						Book Price is required.
+					</p>
+					<p class="text-danger" *ngIf="price.errors?.minlength">
+						Book Price must be at least 1 digit long.
+					</p>
 				</div>
 				
 				<label class="col-md-2 control-label">Language</label>
 				<div class="col-md-4 mb-3">
-					<input type="text" class="form-control" placeholder="Enter Book Language" name="language">
+					<input type="text" class="form-control" placeholder="Enter Book Language" id="language" name="language" [(ngModel)]="book.language" required minlength="3" #language="ngModel">
+					<p class="text-danger" *ngIf="language.errors?.required && language.touched">
+						Book Language is required.
+					</p>
+					<p class="text-danger" *ngIf="language.errors?.minlength">
+						Book Language must be at least 3 characters long.
+					</p>
 				</div>
 			</div>
 		</div>
 		<div class="card-footer text-right">
-			<button type="button" class="btn btn-success">Save</button>
+			<button type="button" class="btn btn-success" (click)="saveBook()" [disabled]="!bookForm.form.valid">Save</button>&nbsp;
+			<button type="reset" class="btn btn-info">Reset</button>
 		</div>
 	</form>
 </div>

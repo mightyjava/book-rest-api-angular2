@@ -9,7 +9,7 @@ export class BookListComponent implements OnInit {
 
     title = 'Book List';
     
-    noBooks = "No Book Available";
+    noBooks = "No Books Available";
 
     constructor() { }
 

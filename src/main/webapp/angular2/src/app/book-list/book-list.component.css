@@ -1,0 +1,12 @@
+#table-mobile {
+  display:none;
+}
+
+@media(max-width:767px) {
+  #table-mobile {
+    display:block;
+  }
+  #table-desktop {
+    display:none;
+  }
+}

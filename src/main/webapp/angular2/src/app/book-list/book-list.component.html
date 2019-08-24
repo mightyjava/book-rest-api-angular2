@@ -16,14 +16,73 @@
         </tr>
         </thead>
         <tbody>
-        <tr align="center">
-          <td colspan="6">{{noBooks}}</td>
-        </tr>
+          <ng-container *ngFor="let book of books">
+            <tr>
+              <td>
+                <img src="{{book.coverPhotoURL}}" class="rounded-circle" alt="cover photo" width="32" height="32">
+                {{book.title}}
+              </td>
+              <td>{{book.author}}</td>
+              <td>{{book.isbnNumber}}</td>
+              <td>{{book.price}}</td>
+              <td>{{book.language}}</td>
+              <td>
+                <a class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a>&nbsp;
+                <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Delete</button>
+              </td>
+            </tr>
+          </ng-container>
+          <tr align="center" *ngIf="!books">
+            <td colspan="6">{{loadingMessage}}</td>
+          </tr>
+          <tr align="center" *ngIf="books && books.length == 0">
+            <td colspan="6">{{noBooks}}</td>
+          </tr>
         </tbody>
       </table>
     </div>
     <div id="table-mobile">
-      <div class="alert alert-dark border border-light text-white text-center" style="background-color:#32383E">
+      <ng-container *ngFor="let book of books">
+        <div class="card bg-dark">
+          <img src="{{book.coverPhotoURL}}" class="card-img" alt="cover photo">
+          <div class="card-img-overlay">
+            <table class="table table-bordered table-condensed table-hover table-striped table-dark" style="opacity:0.9">
+              <tr>
+                <td colspan="2" align="center">
+                  <h5>{{book.title}}</h5>
+                </td>
+              </tr>
+              <tr>
+                <th>Author</th>
+                <td>{{book.author}}</td>
+              </tr>
+              <tr>
+                <th>ISBN Number</th>
+                <td>{{book.isbnNumber}}</td>
+              </tr>
+              <tr>
+                <th>Price</th>
+                <td>{{book.price}}</td>
+              </tr>
+              <tr>
+                <th>Language</th>
+                <td>{{book.language}}</td>
+              </tr>
+              <tr>
+                <th>Actions</th>
+                <td>
+                  <a class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o"></i></a>&nbsp;
+                  <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ng-container>
+      <div class="alert alert-dark border border-light text-white text-center" *ngIf="!books" style="background-color:#32383E">
+        {{loadingMessage}}
+      </div>
+      <div class="alert alert-dark border border-light text-white text-center" *ngIf="books && books.length == 0" style="background-color:#32383E">
         {{noBooks}}
       </div>
     </div>

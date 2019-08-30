@@ -28,4 +28,13 @@ export class BookListComponent implements OnInit {
       this.bookService.getBooks().subscribe(books => this.books = books);
     }
 
+    deleteBook(book:Book): void {
+      if(confirm("Are you sure to delete book "+book.title+"?")) {
+        this.bookService.deleteBook(book.id).subscribe(response => {
+          alert(response.message);
+          this.getBooks();
+        });
+      }
+    }
+
 }

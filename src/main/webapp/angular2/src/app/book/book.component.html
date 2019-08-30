@@ -1,6 +1,7 @@
 <div class="card border border-dark bg-dark text-white">
 	<div class="card-header">
-		<strong><i class="fa fa-plus-circle"></i> Add New Book</strong>
+		<strong *ngIf="book.id == 0"><i class="fa fa-plus-circle"></i> Add New Book</strong>
+    <strong *ngIf="book.id != 0"><i class="fa fa-pencil-square-o"></i> Update Book</strong>
 	</div>
 	<form class="form-horizontal" #bookForm="ngForm">
 		<div class="card-body">
@@ -75,8 +76,13 @@
 			</div>
 		</div>
 		<div class="card-footer text-right">
-			<button type="button" class="btn btn-success" (click)="saveBook()" [disabled]="!bookForm.form.valid"><i class="fa fa-floppy-o"></i> Save</button>&nbsp;
-			<button type="reset" class="btn btn-info"><i class="fa fa-refresh"></i> Reset</button>
+			<button type="button" class="btn btn-success btn-sm" (click)="saveBook()" [disabled]="!bookForm.form.valid"><i class="fa fa-floppy-o"></i> {{book.id == 0 ? "Save" : "Update"}}</button>&nbsp;
+			<span *ngIf="book.id == 0">
+        <button type="reset" class="btn btn-info btn-sm"><i class="fa fa-refresh"></i> Reset</button>
+      </span>
+      <span *ngIf="book.id != 0">
+        <a routerLink="/list" class="btn btn-info btn-sm"><i class="fa fa-list"></i> Show List</a>
+      </span>
 		</div>
 	</form>
 </div>

@@ -17,4 +17,16 @@ export class BookService {
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(this.bookServiceURL);
   }
+
+  getBook(id): Observable<Book> {
+    return this.http.get<Book>(this.bookServiceURL + "/" + id);
+  }
+
+  deleteBook(id): Observable<any> {
+    return this.http.delete<any>(this.bookServiceURL + "/" + id);
+  }
+
+  saveBook(book: Book): Observable<Book> {
+    return this.http.post<Book>(this.bookServiceURL, book);
+  }
 }

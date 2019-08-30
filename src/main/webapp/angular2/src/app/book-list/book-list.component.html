@@ -27,8 +27,8 @@
               <td>{{book.price}}</td>
               <td>{{book.language}}</td>
               <td>
-                <a class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a>&nbsp;
-                <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Delete</button>
+                <a routerLink="/edit/{{book.id}}" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a>&nbsp;
+                <button class="btn btn-danger btn-sm" (click)="deleteBook(book)"><i class="fa fa-trash-o"></i> Delete</button>
               </td>
             </tr>
           </ng-container>
@@ -71,8 +71,8 @@
               <tr>
                 <th>Actions</th>
                 <td>
-                  <a class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o"></i></a>&nbsp;
-                  <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                  <a routerLink="/edit/{{book.id}}" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o"></i></a>&nbsp;
+                  <button class="btn btn-danger btn-sm" (click)="deleteBook(book)"><i class="fa fa-trash-o"></i></button>
                 </td>
               </tr>
             </table>
